@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Root variables for Emerald Green Theme */
+:root {
+  --primary-green: #10b981;
+  --secondary-green: #059669;
+  --accent-teal: #0d9488;
+  --light-green: #d1fae5;
+  --dark-bg: #030712;
+  --card-dark: #111827;
+  --border-light: #e5e7eb;
+  --text-dark: #111827;
+  --text-slate: #374151;
+  --shadow-color: rgba(16, 185, 129, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f9fafb;
+  color: var(--text-dark);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.dark body {
+  background-color: #030712;
+  color: #f9fafb;
+}
+
+/* App Container */
+.App {
+  min-height: 100vh;
+  background: #f9fafb;
+  color: var(--text-dark);
+}
+
+.dark .App {
+  background: #030712;
+  color: #f9fafb;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #111827;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-green);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-green);
+}
+
+/* Navigation / Header */
+.navbar {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-light);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.dark .navbar {
+  background: #111827;
+  border-bottom: 1px solid #1f2937;
+}
+
+.navbar-brand {
+  color: var(--primary-green) !important;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+/* Cards */
+.card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark .card {
+  background: #111827;
+  border: 1px solid #1f2937;
+  color: #f9fafb;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px var(--shadow-color);
+}
+
+.card-title {
+  color: var(--primary-green);
+  font-weight: 700;
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+  border: none;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.btn-outline-primary {
+  border-color: var(--primary-green);
+  color: var(--primary-green);
+}
+
+.btn-outline-primary:hover {
+  background: var(--primary-green);
+  color: #ffffff;
+}
+
+/* Form Controls */
+.form-control {
+  background: #f9fafb;
+  border: 1px solid #d1d5db;
+  color: var(--text-dark);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+}
+
+.dark .form-control {
+  background: #1f2937;
+  border: 1px solid #374151;
+  color: #f9fafb;
+}
+
+.form-control:focus {
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 0.2rem rgba(16, 185, 129, 0.15);
+}
+
+/* Selection & Focus */
+::selection {
+  background: var(--primary-green);
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary-green);
+  outline-offset: 2px;
+}
