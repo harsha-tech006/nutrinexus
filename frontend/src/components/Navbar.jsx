@@ -124,28 +124,28 @@ export const Navbar = ({ onMenuClick }) => {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-gray-200 dark:border-gray-800 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md transition-colors duration-200">
-      <div className="flex h-16 items-center justify-between px-4 md:px-6">
+    <header className="sticky top-0 z-40 w-full max-w-full overflow-hidden border-b border-gray-200 dark:border-gray-800 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md transition-colors duration-200">
+      <div className="flex h-16 items-center justify-between px-2 sm:px-4 md:px-6 w-full max-w-full min-w-0">
         
         {/* Left Side: Brand Logo */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-1.5 sm:gap-4 shrink min-w-0 overflow-hidden">
           <button
             onClick={onMenuClick}
-            className="rounded-lg p-1.5 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none md:hidden"
+            className="rounded-lg p-1.5 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none md:hidden shrink-0"
           >
             <HiMenuAlt1 className="h-6 w-6" />
           </button>
           
-          <Link to="/dashboard" className="flex items-center gap-2 font-bold text-xl tracking-tight">
-            <IoFitness className="w-8 h-8 text-emerald-500 animate-pulse-slow" />
-            <span className="bg-gradient-to-r from-emerald-500 via-teal-500 to-green-600 dark:from-emerald-400 dark:to-teal-300 bg-clip-text text-transparent font-black">
+          <Link to="/dashboard" className="flex items-center gap-1 sm:gap-2 font-bold text-base sm:text-xl tracking-tight truncate min-w-0">
+            <IoFitness className="w-6 h-6 sm:w-8 sm:h-8 text-emerald-500 animate-pulse-slow shrink-0" />
+            <span className="bg-gradient-to-r from-emerald-500 via-teal-500 to-green-600 dark:from-emerald-400 dark:to-teal-300 bg-clip-text text-transparent font-black truncate text-sm sm:text-xl">
               NutriNexus
             </span>
           </Link>
         </div>
 
         {/* Right Side Actions */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1 sm:gap-2.5 shrink-0">
           
           {/* PWA Install Button */}
           <InstallPWA />
