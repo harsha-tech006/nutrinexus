@@ -1,4 +1,4 @@
-const { spawn } = require('child_process');
+const { spawn, execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
@@ -20,6 +20,20 @@ console.log(`===================================================`);
 console.log(`🚀 Starting NutriNexus Flask Backend via Python:`);
 console.log(`📍 Python path: ${pythonBin}`);
 console.log(`===================================================`);
+
+// Ensure all Python requirements are installed in the environment (crucial for deployment platforms like Render)
+try {
+  const reqPath = path.join(__dirname, 'requirements.txt');
+  if (fs.existsSync(reqPath)) {
+    console.log(`📦 Ensuring Python dependencies from requirements.txt are installed...`);
+    execSync(`"${pythonBin}" -m pip install -r "${reqPath}"`, {
+      stdio: 'inherit',
+      cwd: __dirname
+    });
+  }
+} catch (err) {
+  console.warn('⚠️ Pip dependency installation check notice:', err.message);
+}
 
 const child = spawn(pythonBin, ['app.py'], {
   cwd: __dirname,

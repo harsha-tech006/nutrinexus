@@ -4,6 +4,8 @@
   "description": "Backend for Nutrition Assistant Application with AI",
   "main": "server.js",
   "scripts": {
+    "build": "pip install -r requirements.txt || pip3 install -r requirements.txt || true",
+    "postinstall": "pip install -r requirements.txt || pip3 install -r requirements.txt || true",
     "start": "node run-backend.js",
     "dev": "node run-backend.js",
     "start:node": "node server.js",
