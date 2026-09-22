@@ -1,0 +1,72 @@
+{
+  "short_name": "NutriNexus",
+  "name": "NutriNexus - AI Nutrition & Health Assistant",
+  "description": "Scientifically tailored Indian nutrition, disease guides, yoga, water, medicine reminders & AI assistant.",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "maskable512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#090D16",
+  "theme_color": "#059669",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "categories": ["health", "fitness", "lifestyle", "medical"],
+  "shortcuts": [
+    {
+      "name": "Food Recommendation",
+      "short_name": "Meals",
+      "description": "View daily healthy meal recommendations",
+      "url": "/food-recommendation",
+      "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Daily Tracker",
+      "short_name": "Tracker",
+      "description": "Log food and health stats",
+      "url": "/daily-tracker",
+      "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "AI Nutrition Chat",
+      "short_name": "AI Chat",
+      "description": "Ask AI nutrition assistant",
+      "url": "/ai-chat",
+      "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Water Tracker",
+      "short_name": "Water",
+      "description": "Log hydration and water intake",
+      "url": "/water-reminder",
+      "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
+    }
+  ]
+}

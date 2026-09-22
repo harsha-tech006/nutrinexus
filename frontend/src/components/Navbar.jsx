@@ -4,6 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 import { ThemeContext } from '../context/ThemeContext';
 import { LanguageContext } from '../context/LanguageContext';
 import LanguageSelector from './LanguageSelector';
+import InstallPWA from './InstallPWA';
 import notificationService from '../services/notificationService';
 import api from '../services/api';
 import toast from 'react-hot-toast';
@@ -146,6 +147,9 @@ export const Navbar = ({ onMenuClick }) => {
         {/* Right Side Actions */}
         <div className="flex items-center gap-2 sm:gap-3">
           
+          {/* PWA Install Button */}
+          <InstallPWA />
+
           {/* Language Selector */}
           <LanguageSelector />
 
