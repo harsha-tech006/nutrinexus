@@ -6,7 +6,17 @@ export const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const getApiUrl = () => {
+  if (process.env.REACT_APP_API_URL) {
+    return process.env.REACT_APP_API_URL;
+  }
+  if (typeof window !== 'undefined' && window.location && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+    return 'http://localhost:5000/api';
+  }
+  return 'https://nutrinexus-1.onrender.com/api';
+};
+
+const API_URL = getApiUrl();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);

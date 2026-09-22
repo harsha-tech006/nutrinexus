@@ -30,9 +30,8 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    # Enable CORS
-    origins = [url.strip() for url in Config.FRONTEND_URL.split(",")]
-    CORS(app, resources={r"/api/*": {"origins": origins}}, supports_credentials=True)
+    # Enable CORS for all frontend origins (including local dev and Vercel deployments)
+    CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
 
     # Initialize extensions
     mail.init_app(app)

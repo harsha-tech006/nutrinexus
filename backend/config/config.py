@@ -19,7 +19,7 @@ class Config:
     
     # Client URLs for CORS
     CLIENT_URL = os.getenv("CLIENT_URL", "http://localhost:3000")
-    FRONTEND_URL = os.getenv("FRONTEND_URL", "http://127.0.0.1:5500,http://localhost:8080,http://localhost:3000,http://localhost:3001,http://localhost:3002,http://localhost:3003")
+    FRONTEND_URL = os.getenv("FRONTEND_URL", "*")
 
     # Firebase Credentials Path
     FIREBASE_CREDENTIALS_JSON = os.getenv("FIREBASE_CREDENTIALS_JSON", "")
