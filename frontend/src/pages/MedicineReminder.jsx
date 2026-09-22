@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { LanguageContext } from '../context/LanguageContext';
 import api from '../services/api';
 import MedicineCards from '../components/MedicineCards';
 import ReusableModal from '../components/ReusableModal';
@@ -7,6 +8,7 @@ import toast from 'react-hot-toast';
 import { playReminderSound } from '../utils/soundAlert';
 
 export const MedicineReminder = () => {
+  const { t } = useContext(LanguageContext);
   const [reminders, setReminders] = useState([]);
   const [loading, setLoading] = useState(true);
   

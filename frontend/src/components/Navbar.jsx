@@ -146,17 +146,6 @@ export const Navbar = ({ onMenuClick }) => {
         {/* Right Side Actions */}
         <div className="flex items-center gap-2 sm:gap-3">
           
-          {/* Emergency Hospital SOS shortcut */}
-          <Link
-            to="/hospitals"
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-600 dark:text-red-400 font-bold rounded-xl text-xs transition shadow-sm"
-            title="Nearest Hospital & Emergency SOS"
-          >
-            <span className="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
-            <span className="hidden sm:inline">Emergency SOS</span>
-            <span className="sm:hidden">SOS</span>
-          </Link>
-          
           {/* Language Selector */}
           <LanguageSelector />
 

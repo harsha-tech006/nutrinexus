@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { LanguageContext } from '../context/LanguageContext';
 import api from '../services/api';
 import { HiOutlineSearch, HiOutlineHeart, HiOutlineCheckCircle, HiOutlineXCircle, HiOutlineExclamation } from 'react-icons/hi';
 import { TbYoga } from 'react-icons/tb';
@@ -8,6 +9,7 @@ import YogaCard from '../components/yoga/YogaCard';
 import PoseDetails from '../components/yoga/PoseDetails';
 
 export const DiseaseGuide = () => {
+  const { t } = useContext(LanguageContext);
   const [diseases, setDiseases] = useState([]);
   const [medicines, setMedicines] = useState(null);
   const [search, setSearch] = useState('');
@@ -17,6 +19,15 @@ export const DiseaseGuide = () => {
   const [medSearch, setMedSearch] = useState('');
   const [diseaseYogas, setDiseaseYogas] = useState([]);
   const [activeModalPose, setActiveModalPose] = useState(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const diseaseParam = params.get('disease');
+    if (diseaseParam) {
+      setSearch(diseaseParam);
+    }
+  }, [location.search]);
 
   const fetchGuideData = async () => {
     setLoading(true);
@@ -609,7 +620,7 @@ export const DiseaseGuide = () => {
                     </div>
                   </div>
                   <Link
-                    to={`/yoga_guide?disease=${encodeURIComponent(selectedDisease.name)}`}
+                    to={`/yoga-guide?disease=${encodeURIComponent(selectedDisease.name)}`}
                     className="shrink-0 bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-xs px-4 py-2.5 rounded-xl transition-all shadow-md"
                   >
                     Open in Yoga Guide ➔

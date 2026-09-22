@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { LanguageContext } from '../context/LanguageContext';
 import api from '../services/api';
 import { HiOutlineBell, HiOutlineMailOpen, HiOutlineCheck } from 'react-icons/hi';
 import toast from 'react-hot-toast';
 import { playNotificationSound } from '../utils/soundAlert';
 
 export const Notifications = () => {
+  const { t } = useContext(LanguageContext);
   const defaultNotifications = [
     {
       _id: "notif_1",

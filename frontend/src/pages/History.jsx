@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { LanguageContext } from '../context/LanguageContext';
 import api from '../services/api';
 import { HiOutlineSearch, HiOutlineTrash, HiOutlineAdjustments } from 'react-icons/hi';
 import toast from 'react-hot-toast';
 
 export const History = () => {
+  const { t } = useContext(LanguageContext);
   const defaultHistory = [
     {
       _id: "hist_1",

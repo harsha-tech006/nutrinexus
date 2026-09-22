@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { LanguageContext } from '../context/LanguageContext';
 import api from '../services/api';
 import { HiOutlineLightBulb, HiOutlineFlag } from 'react-icons/hi';
 import toast from 'react-hot-toast';
 
 export const GoalTracker = () => {
   const { user, updateProfile } = useContext(AuthContext);
+  const { t } = useContext(LanguageContext);
   
   const [goalType, setGoalType] = useState('Healthy Lifestyle');
   const [startWeight, setStartWeight] = useState('');

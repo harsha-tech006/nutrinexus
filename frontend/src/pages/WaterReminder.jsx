@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { LanguageContext } from '../context/LanguageContext';
 import api from '../services/api';
 import { IoWater, IoWaterOutline, IoRemoveCircleOutline, IoAddCircleOutline } from 'react-icons/io5';
 import toast from 'react-hot-toast';
@@ -7,6 +8,7 @@ import { playNotificationSound } from '../utils/soundAlert';
 
 export const WaterReminder = () => {
   const { user } = useContext(AuthContext);
+  const { t } = useContext(LanguageContext);
   const [water, setWater] = useState(0);
   const [loading, setLoading] = useState(true);
 

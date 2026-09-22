@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { LanguageContext } from '../context/LanguageContext';
 import api from '../services/api';
 import { TrendLineChart, BarGraphChart } from '../components/Charts';
 import { HiOutlineDownload, HiOutlineChartBar } from 'react-icons/hi';
@@ -7,6 +8,7 @@ import toast from 'react-hot-toast';
 
 export const MonthlyReport = () => {
   const { user } = useContext(AuthContext);
+  const { t } = useContext(LanguageContext);
 
   const defaultMonthlyReportData = {
     labels: ["Week 1", "Week 2", "Week 3", "Week 4"],

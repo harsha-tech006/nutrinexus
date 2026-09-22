@@ -8,7 +8,7 @@ import {
   HiOutlineChartBar, HiOutlineCalendar, HiOutlineClipboardList, 
   HiOutlineHeart, HiOutlineClock, HiOutlineCog, HiOutlineChatAlt,
   HiOutlineBell, HiOutlineAdjustments,
-  HiX, HiOutlineDocumentReport, HiOutlineLocationMarker,
+  HiX, HiOutlineDocumentReport,
   HiOutlineVideoCamera, HiOutlineUserGroup, HiOutlineSparkles
 } from 'react-icons/hi';
 import { IoFlameOutline, IoWaterOutline } from 'react-icons/io5';
@@ -21,17 +21,16 @@ export const Sidebar = ({ isOpen, onClose }) => {
 
   const menuItems = [
     { path: '/dashboard', label: t('dashboard'), icon: HiOutlineChartBar },
-    { path: '/health-monitor', label: 'Health Condition Monitor', icon: HiOutlineHeart },
+    { path: '/health-monitor', label: t('healthConditionMonitor'), icon: HiOutlineHeart },
     { path: '/daily-tracker', label: t('dailyTracker'), icon: HiOutlineCalendar },
     { path: '/goal-tracker', label: t('goalTracker'), icon: HiOutlineClipboardList },
     { path: '/food-recommendation', label: t('mealRecommendation'), icon: IoFlameOutline },
     { path: '/water-reminder', label: t('waterTracker'), icon: IoWaterOutline },
-    { path: '/pregnancy-nutrition', label: 'Pregnancy Nutrition', icon: FaBaby },
-    { path: '/cycle-tracker', label: 'Cycle & Period Tracker', icon: HiOutlineSparkles },
+    { path: '/pregnancy-nutrition', label: t('pregnancyNutrition'), icon: FaBaby },
+    { path: '/cycle-tracker', label: t('cycleTracker'), icon: HiOutlineSparkles },
     { path: '/yoga-guide', label: t('yogaGuide'), icon: TbYoga },
     { path: '/disease-guide', label: t('diseaseGuide'), icon: HiOutlineHeart },
     { path: '/medicine-reminder', label: t('medicineReminder'), icon: HiOutlineClock },
-    { path: '/hospitals', label: t('nearestHospitals') !== 'nearestHospitals' ? t('nearestHospitals') : 'Nearest Hospitals SOS', icon: HiOutlineLocationMarker },
     { path: '/ai-chat', label: t('aiNutritionChat'), icon: HiOutlineChatAlt },
     { path: '/weekly-report', label: t('weeklyReport'), icon: HiOutlineDocumentReport },
     { path: '/monthly-report', label: t('monthlyReport'), icon: HiOutlineDocumentReport },

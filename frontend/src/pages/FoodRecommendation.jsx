@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { LanguageContext } from '../context/LanguageContext';
 import api from '../services/api';
 import toast from 'react-hot-toast';
 import { 
@@ -13,6 +14,7 @@ import {
 
 export const FoodRecommendation = () => {
   const { user } = useContext(AuthContext);
+  const { t } = useContext(LanguageContext);
   const [loggingMeal, setLoggingMeal] = useState(null);
 
   // Individual Swap Indices for each meal type
@@ -43,47 +45,68 @@ export const FoodRecommendation = () => {
     }
   }, [completedMeals]);
 
-  // Authentic Healthy Indian Meal Arrays
+  // Authentic Healthy Indian Meal Arrays with Translation Keys
   const indianBreakfasts = [
-    { name: "Vegetable Oats Porridge with Raw Almonds", calories: 310, protein: 11, carbs: 45, fat: 8, desc: "Heart-healthy oats cooked with diced carrots, beans, and raw almonds." },
-    { name: "Ragi Dosa with Mint-Coriander Chutney", calories: 320, protein: 9, carbs: 48, fat: 6, desc: "High-fiber finger millet crepe with antioxidant mint chutney. Low GI to prevent blood sugar spikes." },
-    { name: "Moong Dal Chilla with Paneer Stuffing", calories: 340, protein: 18, carbs: 36, fat: 9, desc: "Protein-rich yellow mung lentil pancake stuffed with grated cottage cheese and herbs." },
-    { name: "Oats Vegetable Idli with Sambar", calories: 290, protein: 10, carbs: 42, fat: 5, desc: "Steamed beta-glucan oats & carrot idlis served with fiber-loaded vegetable dal sambar." },
-    { name: "Sprouted Moong Salad & Boiled Eggs / Tofu", calories: 330, protein: 20, carbs: 30, fat: 10, desc: "Enzyme-rich sprouted green gram topped with pomegranate, lemon, and clean protein." },
-    { name: "Poha with Peanuts, Mustard & Curry Leaves", calories: 310, protein: 8, carbs: 50, fat: 7, desc: "Iron-enriched flattened rice seasoned with crunchy peanuts, turmeric, and curry leaves." },
-    { name: "Appam with Light Vegetable Coconut Stew", calories: 300, protein: 7, carbs: 46, fat: 8, desc: "Soft fermented rice crepe served with aromatic coconut milk vegetable stew." }
+    { nameKey: "bkt1_name", descKey: "bkt1_desc", defaultName: "Vegetable Oats Porridge with Raw Almonds", calories: 310, protein: 11, carbs: 45, fat: 8, defaultDesc: "Heart-healthy oats cooked with diced carrots, beans, and raw almonds." },
+    { nameKey: "bkt2_name", descKey: "bkt2_desc", defaultName: "Ragi Dosa with Mint-Coriander Chutney", calories: 320, protein: 9, carbs: 48, fat: 6, defaultDesc: "High-fiber finger millet crepe with antioxidant mint chutney. Low GI to prevent blood sugar spikes." },
+    { nameKey: "bkt3_name", descKey: "bkt3_desc", defaultName: "Moong Dal Chilla with Paneer Stuffing", calories: 340, protein: 18, carbs: 36, fat: 9, defaultDesc: "Protein-rich yellow mung lentil pancake stuffed with grated cottage cheese and herbs." },
+    { nameKey: "bkt4_name", descKey: "bkt4_desc", defaultName: "Oats Vegetable Idli with Sambar", calories: 290, protein: 10, carbs: 42, fat: 5, defaultDesc: "Steamed beta-glucan oats & carrot idlis served with fiber-loaded vegetable dal sambar." },
+    { nameKey: "bkt5_name", descKey: "bkt5_desc", defaultName: "Sprouted Moong Salad & Boiled Eggs / Tofu", calories: 330, protein: 20, carbs: 30, fat: 10, defaultDesc: "Enzyme-rich sprouted green gram topped with pomegranate, lemon, and clean protein." },
+    { nameKey: "bkt6_name", descKey: "bkt6_desc", defaultName: "Poha with Peanuts, Mustard & Curry Leaves", calories: 310, protein: 8, carbs: 50, fat: 7, defaultDesc: "Iron-enriched flattened rice seasoned with crunchy peanuts, turmeric, and curry leaves." },
+    { nameKey: "bkt7_name", descKey: "bkt7_desc", defaultName: "Appam with Light Vegetable Coconut Stew", calories: 300, protein: 7, carbs: 46, fat: 8, defaultDesc: "Soft fermented rice crepe served with aromatic coconut milk vegetable stew." }
   ];
 
   const indianLunches = [
-    { name: "Mixed Vegetable Dal Rice with Curd & Green Salad", calories: 490, protein: 16, carbs: 72, fat: 10, desc: "Balanced Indian thali with gut-friendly probiotics, yellow dal, steamed rice, and salad." },
-    { name: "Bajra / Jowar Roti with Bhindi Masala & Tadka Dal", calories: 460, protein: 15, carbs: 68, fat: 9, desc: "Gluten-free sorghum/pearl millet flatbread paired with fiber-rich okra and lentils." },
-    { name: "Brown Rice Biryani with Cucumber Mint Raita", calories: 520, protein: 15, carbs: 78, fat: 11, desc: "Aromatic brown basmati rice cooked with legumes, vegetables, and cooling probiotic raita." },
-    { name: "Palak Paneer with Multigrain Phulka & Salad", calories: 480, protein: 22, carbs: 54, fat: 16, desc: "Iron-rich spinach gravy with cottage cheese and high-fiber multigrain roti." },
-    { name: "South Indian Rasam Rice with Beans Poriyal & Curd", calories: 430, protein: 12, carbs: 70, fat: 8, desc: "Digestive immunity booster with pepper rasam, green beans stir-fry, and fresh curd." },
-    { name: "Chole (Chickpea Masala) with Jeera Brown Rice", calories: 510, protein: 19, carbs: 76, fat: 10, desc: "Protein-loaded chickpeas cooked in Indian spices served with cumin brown rice." }
+    { nameKey: "lnc1_name", descKey: "lnc1_desc", defaultName: "Mixed Vegetable Dal Rice with Curd & Green Salad", calories: 490, protein: 16, carbs: 72, fat: 10, defaultDesc: "Balanced Indian thali with gut-friendly probiotics, yellow dal, steamed rice, and salad." },
+    { nameKey: "lnc2_name", descKey: "lnc2_desc", defaultName: "Bajra / Jowar Roti with Bhindi Masala & Tadka Dal", calories: 460, protein: 15, carbs: 68, fat: 9, defaultDesc: "Gluten-free sorghum/pearl millet flatbread paired with fiber-rich okra and lentils." },
+    { nameKey: "lnc3_name", descKey: "lnc3_desc", defaultName: "Brown Rice Biryani with Cucumber Mint Raita", calories: 520, protein: 15, carbs: 78, fat: 11, defaultDesc: "Aromatic brown basmati rice cooked with legumes, vegetables, and cooling probiotic raita." },
+    { nameKey: "lnc4_name", descKey: "lnc4_desc", defaultName: "Palak Paneer with Multigrain Phulka & Salad", calories: 480, protein: 22, carbs: 54, fat: 16, defaultDesc: "Iron-rich spinach gravy with cottage cheese and high-fiber multigrain roti." },
+    { nameKey: "lnc5_name", descKey: "lnc5_desc", defaultName: "South Indian Rasam Rice with Beans Poriyal & Curd", calories: 430, protein: 12, carbs: 70, fat: 8, defaultDesc: "Digestive immunity booster with pepper rasam, green beans stir-fry, and fresh curd." },
+    { nameKey: "lnc6_name", descKey: "lnc6_desc", defaultName: "Chole (Chickpea Masala) with Jeera Brown Rice", calories: 510, protein: 19, carbs: 76, fat: 10, defaultDesc: "Protein-loaded chickpeas cooked in Indian spices served with cumin brown rice." }
   ];
 
   const indianDinners = [
-    { name: "Tofu / Paneer Vegetable Soup with Steamed Broccoli", calories: 340, protein: 26, carbs: 22, fat: 9, desc: "Light, low-calorie dinner promoting deep restorative sleep and overnight cell recovery." },
-    { name: "Multigrain Phulka with Sauteed Paneer & Spinach Soup", calories: 380, protein: 22, carbs: 32, fat: 14, desc: "Low-carb, high-protein evening meal that stabilizes nocturnal blood glucose." },
-    { name: "Lauki (Bottle Gourd) Sabzi with 2 Jowar Rotis & Moong Soup", calories: 320, protein: 12, carbs: 48, fat: 6, desc: "Soothing, easy-to-digest Indian dinner for metabolic regulation and gut comfort." },
-    { name: "Paneer / Soya Tikka with Mint Chutney & Green Salad", calories: 370, protein: 30, carbs: 14, fat: 15, desc: "High protein grilled tikka with zero refined flour, served with lemon green salad." },
-    { name: "Mixed Vegetable Daliya (Cracked Wheat) Khichdi", calories: 330, protein: 13, carbs: 52, fat: 7, desc: "Fiber-rich broken wheat cooked with yellow moong dal, carrots, and green peas." },
-    { name: "Methi (Fenugreek) Roti with Veg Stew & Curd", calories: 350, protein: 14, carbs: 46, fat: 8, desc: "Blood sugar regulation meal enriched with fresh fenugreek leaves and curd." }
+    { nameKey: "dnr1_name", descKey: "dnr1_desc", defaultName: "Tofu / Paneer Vegetable Soup with Steamed Broccoli", calories: 340, protein: 26, carbs: 22, fat: 9, defaultDesc: "Light, low-calorie dinner promoting deep restorative sleep and overnight cell recovery." },
+    { nameKey: "dnr2_name", descKey: "dnr2_desc", defaultName: "Multigrain Phulka with Sauteed Paneer & Spinach Soup", calories: 380, protein: 22, carbs: 32, fat: 14, defaultDesc: "Low-carb, high-protein evening meal that stabilizes nocturnal blood glucose." },
+    { nameKey: "dnr3_name", descKey: "dnr3_desc", defaultName: "Lauki (Bottle Gourd) Sabzi with 2 Jowar Rotis & Moong Soup", calories: 320, protein: 12, carbs: 48, fat: 6, defaultDesc: "Soothing, easy-to-digest Indian dinner for metabolic regulation and gut comfort." },
+    { nameKey: "dnr4_name", descKey: "dnr4_desc", defaultName: "Paneer / Soya Tikka with Mint Chutney & Green Salad", calories: 370, protein: 30, carbs: 14, fat: 15, defaultDesc: "High protein grilled tikka with zero refined flour, served with lemon green salad." },
+    { nameKey: "dnr5_name", descKey: "dnr5_desc", defaultName: "Mixed Vegetable Daliya (Cracked Wheat) Khichdi", calories: 330, protein: 13, carbs: 52, fat: 7, defaultDesc: "Fiber-rich broken wheat cooked with yellow moong dal, carrots, and green peas." },
+    { nameKey: "dnr6_name", descKey: "dnr6_desc", defaultName: "Methi (Fenugreek) Roti with Veg Stew & Curd", calories: 350, protein: 14, carbs: 46, fat: 8, defaultDesc: "Blood sugar regulation meal enriched with fresh fenugreek leaves and curd." }
   ];
 
   const indianSnacks = [
-    { name: "Roasted Makhana (Lotus Seeds) with Rock Salt & Pepper", calories: 120, protein: 4, carbs: 20, fat: 2, desc: "Low-calorie crunchy snack rich in calcium, magnesium, and antioxidants." },
-    { name: "Roasted Chana (Bengal Gram) & Warm Turmeric Milk / Green Tea", calories: 140, protein: 7, carbs: 20, fat: 3, desc: "Crunchy roasted Bengal gram high in fiber and plant protein." },
-    { name: "Boiled Sprouted Chana Salad with Lemon Juice", calories: 150, protein: 8, carbs: 22, fat: 3, desc: "Tangy sprouted black chickpeas tossed with onions, tomatoes, coriander & lemon." },
-    { name: "Steamed Sweet Corn with Mint & Chaat Masala", calories: 130, protein: 4, carbs: 26, fat: 2, desc: "Fiber-rich juicy sweet corn seasoned with Indian digestive spices." },
-    { name: "Sukha Bhel with Puffed Rice, Sprouts & Tamarind", calories: 160, protein: 5, carbs: 30, fat: 3, desc: "Light oil-free Indian bhel with sprouted legumes and coriander." }
+    { nameKey: "snk1_name", descKey: "snk1_desc", defaultName: "Roasted Makhana (Lotus Seeds) with Rock Salt & Pepper", calories: 120, protein: 4, carbs: 20, fat: 2, defaultDesc: "Low-calorie crunchy snack rich in calcium, magnesium, and antioxidants." },
+    { nameKey: "snk2_name", descKey: "snk2_desc", defaultName: "Roasted Chana (Bengal Gram) & Warm Turmeric Milk / Green Tea", calories: 140, protein: 7, carbs: 20, fat: 3, defaultDesc: "Crunchy roasted Bengal gram high in fiber and plant protein." },
+    { nameKey: "snk3_name", descKey: "snk3_desc", defaultName: "Boiled Sprouted Chana Salad with Lemon Juice", calories: 150, protein: 8, carbs: 22, fat: 3, defaultDesc: "Tangy sprouted black chickpeas tossed with onions, tomatoes, coriander & lemon." },
+    { nameKey: "snk4_name", descKey: "snk4_desc", defaultName: "Steamed Sweet Corn with Mint & Chaat Masala", calories: 130, protein: 4, carbs: 26, fat: 2, defaultDesc: "Fiber-rich juicy sweet corn seasoned with Indian digestive spices." },
+    { nameKey: "snk5_name", descKey: "snk5_desc", defaultName: "Sukha Bhel with Puffed Rice, Sprouts & Tamarind", calories: 160, protein: 5, carbs: 30, fat: 3, defaultDesc: "Light oil-free Indian bhel with sprouted legumes and coriander." }
   ];
 
-  const currentBreakfast = indianBreakfasts[bktIdx % indianBreakfasts.length];
-  const currentLunch = indianLunches[lncIdx % indianLunches.length];
-  const currentDinner = indianDinners[dnrIdx % indianDinners.length];
-  const currentSnack = indianSnacks[snkIdx % indianSnacks.length];
+  const rawBreakfast = indianBreakfasts[bktIdx % indianBreakfasts.length];
+  const rawLunch = indianLunches[lncIdx % indianLunches.length];
+  const rawDinner = indianDinners[dnrIdx % indianDinners.length];
+  const rawSnack = indianSnacks[snkIdx % indianSnacks.length];
+
+  const currentBreakfast = {
+    ...rawBreakfast,
+    name: t(rawBreakfast.nameKey) || rawBreakfast.defaultName,
+    desc: t(rawBreakfast.descKey) || rawBreakfast.defaultDesc
+  };
+  const currentLunch = {
+    ...rawLunch,
+    name: t(rawLunch.nameKey) || rawLunch.defaultName,
+    desc: t(rawLunch.descKey) || rawLunch.defaultDesc
+  };
+  const currentDinner = {
+    ...rawDinner,
+    name: t(rawDinner.nameKey) || rawDinner.defaultName,
+    desc: t(rawDinner.descKey) || rawDinner.defaultDesc
+  };
+  const currentSnack = {
+    ...rawSnack,
+    name: t(rawSnack.nameKey) || rawSnack.defaultName,
+    desc: t(rawSnack.descKey) || rawSnack.defaultDesc
+  };
 
   const completedCount = Object.values(completedMeals).filter(Boolean).length;
   const completionPercentage = Math.round((completedCount / 4) * 100);
@@ -96,13 +119,13 @@ export const FoodRecommendation = () => {
     }));
 
     if (isNowCompleted) {
-      toast.success(`Marked ${mealType.toUpperCase()} as Completed! ✓`, {
+      toast.success(`${t('completed') || 'Completed'}: ${mealObj.name} ✓`, {
         style: { borderRadius: '12px' }
       });
       // Also log to tracker automatically if not already logged
       handleLogMeal(mealType, mealObj, true);
     } else {
-      toast(`Unmarked ${mealType} as completed`, {
+      toast(`Unmarked ${mealType}`, {
         icon: 'ℹ️',
         style: { borderRadius: '12px' }
       });
@@ -113,19 +136,23 @@ export const FoodRecommendation = () => {
     if (type === 'breakfast') {
       const nextIdx = (bktIdx + 1) % indianBreakfasts.length;
       setBktIdx(nextIdx);
-      toast.success(`Suggested alternative: ${indianBreakfasts[nextIdx].name} 🍲`);
+      const nextMeal = indianBreakfasts[nextIdx];
+      toast.success(`${t('swapBreakfast')}: ${t(nextMeal.nameKey) || nextMeal.defaultName} 🍲`);
     } else if (type === 'lunch') {
       const nextIdx = (lncIdx + 1) % indianLunches.length;
       setLncIdx(nextIdx);
-      toast.success(`Suggested alternative: ${indianLunches[nextIdx].name} 🥗`);
+      const nextMeal = indianLunches[nextIdx];
+      toast.success(`${t('swapLunch')}: ${t(nextMeal.nameKey) || nextMeal.defaultName} 🥗`);
     } else if (type === 'dinner') {
       const nextIdx = (dnrIdx + 1) % indianDinners.length;
       setDnrIdx(nextIdx);
-      toast.success(`Suggested alternative: ${indianDinners[nextIdx].name} 🥣`);
+      const nextMeal = indianDinners[nextIdx];
+      toast.success(`${t('swapDinner')}: ${t(nextMeal.nameKey) || nextMeal.defaultName} 🥣`);
     } else if (type === 'snack') {
       const nextIdx = (snkIdx + 1) % indianSnacks.length;
       setSnkIdx(nextIdx);
-      toast.success(`Suggested alternative: ${indianSnacks[nextIdx].name} 🍵`);
+      const nextMeal = indianSnacks[nextIdx];
+      toast.success(`${t('swapSnack')}: ${t(nextMeal.nameKey) || nextMeal.defaultName} 🍵`);
     }
   };
 
@@ -134,7 +161,7 @@ export const FoodRecommendation = () => {
     setLncIdx(prev => prev + 1);
     setDnrIdx(prev => prev + 1);
     setSnkIdx(prev => prev + 1);
-    toast.success("Generated fresh healthy Indian meal suggestions! 🇮🇳");
+    toast.success(`${t('suggestAllNewMeals') || 'Generated fresh healthy Indian meal suggestions!'} 🇮🇳`);
   };
 
   const handleLogMeal = async (mealType, mealObj, isAutoLog = false) => {
@@ -152,10 +179,10 @@ export const FoodRecommendation = () => {
         fat: mealObj.fat,
         fiber: 5.0
       });
-      if (!isAutoLog) toast.success(`Logged ${mealObj.name} to today's ${mealType}! 🥗`);
+      if (!isAutoLog) toast.success(`${t('logMeal') || 'Logged'}: ${mealObj.name} 🥗`);
     } catch (err) {
       console.error("Meal log notice:", err);
-      if (!isAutoLog) toast.success(`Logged ${mealObj.name} to today's ${mealType}! 🥗`);
+      if (!isAutoLog) toast.success(`${t('logMeal') || 'Logged'}: ${mealObj.name} 🥗`);
     } finally {
       if (!isAutoLog) setLoggingMeal(null);
     }
@@ -168,10 +195,10 @@ export const FoodRecommendation = () => {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-black text-gray-800 dark:text-gray-100 flex items-center gap-2">
-            <span>Recommended Healthy Indian Meals</span> 🇮🇳
+            <span>{t('recommendedHealthyIndianMeals') || 'Recommended Healthy Indian Meals'}</span> 🇮🇳
           </h2>
           <p className="text-sm text-gray-400 mt-1 font-semibold">
-            Scientifically tailored Indian nutrition for your body ({user?.goal || 'Healthy Lifestyle'}{user?.diseases?.length ? ` • ${user.diseases.join(', ')}` : ''}).
+            {t('scientificallyTailoredNutrition') || 'Scientifically tailored Indian nutrition for your body'} ({user?.goal ? (t(user.goal) !== user.goal ? t(user.goal) : user.goal) : t('healthyLifestyle')}{user?.diseases?.length ? ` • ${user.diseases.join(', ')}` : ''}).
           </p>
         </div>
         
@@ -180,7 +207,7 @@ export const FoodRecommendation = () => {
           className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xs px-4 py-2.5 rounded-xl transition-all shadow-md active:scale-95"
         >
           <HiOutlineRefresh className="w-4 h-4" />
-          <span>Suggest All New Indian Meals</span>
+          <span>{t('suggestAllNewMeals') || 'Suggest All New Indian Meals'}</span>
         </button>
       </div>
 
@@ -198,12 +225,12 @@ export const FoodRecommendation = () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="text-[10px] font-black uppercase text-amber-500 bg-amber-500/10 px-3 py-1 rounded-full tracking-wider">
-                  🌅 Breakfast (Morning)
+                  🌅 {t('breakfastMorning') || 'Breakfast (Morning)'}
                 </span>
                 {completedMeals.breakfast && (
                   <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-0.5 rounded-full flex items-center gap-1">
                     <HiCheckCircle className="w-3.5 h-3.5 text-emerald-500" />
-                    <span>Completed ✓</span>
+                    <span>{t('completed') || 'Completed'} ✓</span>
                   </span>
                 )}
               </div>
@@ -230,7 +257,7 @@ export const FoodRecommendation = () => {
                   }`}
                 >
                   <HiCheckCircle className="w-4 h-4" />
-                  <span>{completedMeals.breakfast ? 'Completed ✓' : 'Mark as Completed'}</span>
+                  <span>{completedMeals.breakfast ? `${t('completed') || 'Completed'} ✓` : (t('markAsCompleted') || 'Mark as Completed')}</span>
                 </button>
 
                 <button
@@ -239,17 +266,16 @@ export const FoodRecommendation = () => {
                   className="flex items-center gap-1.5 text-xs font-bold text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800/80 hover:bg-gray-200 dark:hover:bg-gray-700 px-3 py-2 rounded-xl transition-colors"
                 >
                   <HiOutlinePlusCircle className="w-4 h-4 text-emerald-500" />
-                  <span>{loggingMeal === 'breakfast' ? 'Logging...' : 'Log Meal'}</span>
+                  <span>{loggingMeal === 'breakfast' ? (t('updating') || 'Logging...') : (t('logMeal') || 'Log Meal')}</span>
                 </button>
               </div>
 
               <button
                 onClick={() => handleSwapMeal('breakfast')}
                 className="flex items-center gap-1.5 text-xs font-extrabold text-amber-600 dark:text-amber-400 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 px-3 py-2 rounded-xl transition-all"
-                title="Not interested in this meal? Click to see another Indian breakfast!"
               >
                 <HiRefresh className="w-3.5 h-3.5" />
-                <span>Swap Breakfast</span>
+                <span>{t('swapBreakfast') || 'Swap Breakfast'}</span>
               </button>
             </div>
           </div>
@@ -263,12 +289,12 @@ export const FoodRecommendation = () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="text-[10px] font-black uppercase text-emerald-500 bg-emerald-500/10 px-3 py-1 rounded-full tracking-wider">
-                  ☀️ Lunch (Afternoon)
+                  ☀️ {t('lunchAfternoon') || 'Lunch (Afternoon)'}
                 </span>
                 {completedMeals.lunch && (
                   <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-0.5 rounded-full flex items-center gap-1">
                     <HiCheckCircle className="w-3.5 h-3.5 text-emerald-500" />
-                    <span>Completed ✓</span>
+                    <span>{t('completed') || 'Completed'} ✓</span>
                   </span>
                 )}
               </div>
@@ -295,7 +321,7 @@ export const FoodRecommendation = () => {
                   }`}
                 >
                   <HiCheckCircle className="w-4 h-4" />
-                  <span>{completedMeals.lunch ? 'Completed ✓' : 'Mark as Completed'}</span>
+                  <span>{completedMeals.lunch ? `${t('completed') || 'Completed'} ✓` : (t('markAsCompleted') || 'Mark as Completed')}</span>
                 </button>
 
                 <button
@@ -304,17 +330,16 @@ export const FoodRecommendation = () => {
                   className="flex items-center gap-1.5 text-xs font-bold text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800/80 hover:bg-gray-200 dark:hover:bg-gray-700 px-3 py-2 rounded-xl transition-colors"
                 >
                   <HiOutlinePlusCircle className="w-4 h-4 text-emerald-500" />
-                  <span>{loggingMeal === 'lunch' ? 'Logging...' : 'Log Meal'}</span>
+                  <span>{loggingMeal === 'lunch' ? (t('updating') || 'Logging...') : (t('logMeal') || 'Log Meal')}</span>
                 </button>
               </div>
 
               <button
                 onClick={() => handleSwapMeal('lunch')}
                 className="flex items-center gap-1.5 text-xs font-extrabold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 px-3 py-2 rounded-xl transition-all"
-                title="Not interested in this meal? Click to see another Indian lunch!"
               >
                 <HiRefresh className="w-3.5 h-3.5" />
-                <span>Swap Lunch</span>
+                <span>{t('swapLunch') || 'Swap Lunch'}</span>
               </button>
             </div>
           </div>
@@ -328,12 +353,12 @@ export const FoodRecommendation = () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="text-[10px] font-black uppercase text-indigo-500 bg-indigo-500/10 px-3 py-1 rounded-full tracking-wider">
-                  🌙 Dinner (Evening)
+                  🌙 {t('dinnerEvening') || 'Dinner (Evening)'}
                 </span>
                 {completedMeals.dinner && (
                   <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-0.5 rounded-full flex items-center gap-1">
                     <HiCheckCircle className="w-3.5 h-3.5 text-emerald-500" />
-                    <span>Completed ✓</span>
+                    <span>{t('completed') || 'Completed'} ✓</span>
                   </span>
                 )}
               </div>
@@ -360,7 +385,7 @@ export const FoodRecommendation = () => {
                   }`}
                 >
                   <HiCheckCircle className="w-4 h-4" />
-                  <span>{completedMeals.dinner ? 'Completed ✓' : 'Mark as Completed'}</span>
+                  <span>{completedMeals.dinner ? `${t('completed') || 'Completed'} ✓` : (t('markAsCompleted') || 'Mark as Completed')}</span>
                 </button>
 
                 <button
@@ -369,17 +394,16 @@ export const FoodRecommendation = () => {
                   className="flex items-center gap-1.5 text-xs font-bold text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800/80 hover:bg-gray-200 dark:hover:bg-gray-700 px-3 py-2 rounded-xl transition-colors"
                 >
                   <HiOutlinePlusCircle className="w-4 h-4 text-emerald-500" />
-                  <span>{loggingMeal === 'dinner' ? 'Logging...' : 'Log Meal'}</span>
+                  <span>{loggingMeal === 'dinner' ? (t('updating') || 'Logging...') : (t('logMeal') || 'Log Meal')}</span>
                 </button>
               </div>
 
               <button
                 onClick={() => handleSwapMeal('dinner')}
                 className="flex items-center gap-1.5 text-xs font-extrabold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/20 px-3 py-2 rounded-xl transition-all"
-                title="Not interested in this meal? Click to see another Indian dinner!"
               >
                 <HiRefresh className="w-3.5 h-3.5" />
-                <span>Swap Dinner</span>
+                <span>{t('swapDinner') || 'Swap Dinner'}</span>
               </button>
             </div>
           </div>
@@ -393,12 +417,12 @@ export const FoodRecommendation = () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="text-[10px] font-black uppercase text-teal-500 bg-teal-500/10 px-3 py-1 rounded-full tracking-wider">
-                  🍵 Healthy Indian Snack
+                  🍵 {t('healthySnack') || 'Healthy Snack'}
                 </span>
                 {completedMeals.snack && (
                   <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-0.5 rounded-full flex items-center gap-1">
                     <HiCheckCircle className="w-3.5 h-3.5 text-emerald-500" />
-                    <span>Completed ✓</span>
+                    <span>{t('completed') || 'Completed'} ✓</span>
                   </span>
                 )}
               </div>
@@ -425,7 +449,7 @@ export const FoodRecommendation = () => {
                   }`}
                 >
                   <HiCheckCircle className="w-4 h-4" />
-                  <span>{completedMeals.snack ? 'Completed ✓' : 'Mark as Completed'}</span>
+                  <span>{completedMeals.snack ? `${t('completed') || 'Completed'} ✓` : (t('markAsCompleted') || 'Mark as Completed')}</span>
                 </button>
 
                 <button
@@ -434,17 +458,16 @@ export const FoodRecommendation = () => {
                   className="flex items-center gap-1.5 text-xs font-bold text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800/80 hover:bg-gray-200 dark:hover:bg-gray-700 px-3 py-2 rounded-xl transition-colors"
                 >
                   <HiOutlinePlusCircle className="w-4 h-4 text-emerald-500" />
-                  <span>{loggingMeal === 'snacks' ? 'Logging...' : 'Log Meal'}</span>
+                  <span>{loggingMeal === 'snacks' ? (t('updating') || 'Logging...') : (t('logMeal') || 'Log Meal')}</span>
                 </button>
               </div>
 
               <button
                 onClick={() => handleSwapMeal('snack')}
                 className="flex items-center gap-1.5 text-xs font-extrabold text-teal-600 dark:text-teal-400 bg-teal-500/10 hover:bg-teal-500/20 border border-teal-500/20 px-3 py-2 rounded-xl transition-all"
-                title="Not interested in this meal? Click to see another Indian snack!"
               >
                 <HiRefresh className="w-3.5 h-3.5" />
-                <span>Swap Snack</span>
+                <span>{t('swapSnack') || 'Swap Snack'}</span>
               </button>
             </div>
           </div>
@@ -460,19 +483,19 @@ export const FoodRecommendation = () => {
               <div>
                 <h3 className="text-base font-black text-gray-800 dark:text-gray-100 flex items-center gap-2">
                   <HiCheckCircle className="w-5 h-5 text-emerald-500" />
-                  <span>Daily Meal Tracker</span>
+                  <span>{t('dailyMealTracker') || 'Daily Meal Tracker'}</span>
                 </h3>
-                <p className="text-xs text-gray-400 font-semibold mt-0.5">Track your completed healthy meals</p>
+                <p className="text-xs text-gray-400 font-semibold mt-0.5">{t('trackCompletedMeals') || 'Track your completed healthy meals'}</p>
               </div>
               <span className="text-xs font-black px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
-                {completedCount} / 4 Done
+                {completedCount} / 4 {t('done') || 'Done'}
               </span>
             </div>
 
             {/* Progress Bar */}
             <div className="space-y-1.5">
               <div className="flex justify-between text-xs font-bold text-gray-500 dark:text-gray-400">
-                <span>Completion Progress</span>
+                <span>{t('completionProgress') || 'Completion Progress'}</span>
                 <span className="text-emerald-500 font-extrabold">{completionPercentage}%</span>
               </div>
               <div className="w-full bg-gray-100 dark:bg-gray-800 h-2.5 rounded-full overflow-hidden">
@@ -486,10 +509,10 @@ export const FoodRecommendation = () => {
             {/* Checklist Items */}
             <div className="space-y-3 pt-1">
               {[
-                { type: 'breakfast', label: '🌅 Breakfast', meal: currentBreakfast },
-                { type: 'lunch', label: '☀️ Lunch', meal: currentLunch },
-                { type: 'dinner', label: '🌙 Dinner', meal: currentDinner },
-                { type: 'snack', label: '🍵 Healthy Snack', meal: currentSnack },
+                { type: 'breakfast', label: `🌅 ${t('breakfast') || 'Breakfast'}`, meal: currentBreakfast },
+                { type: 'lunch', label: `☀️ ${t('lunch') || 'Lunch'}`, meal: currentLunch },
+                { type: 'dinner', label: `🌙 ${t('dinner') || 'Dinner'}`, meal: currentDinner },
+                { type: 'snack', label: `🍵 ${t('healthySnack') || 'Healthy Snack'}`, meal: currentSnack },
               ].map(({ type, label, meal }) => {
                 const isCompleted = completedMeals[type];
                 return (
@@ -517,11 +540,11 @@ export const FoodRecommendation = () => {
                     <div className="shrink-0">
                       {isCompleted ? (
                         <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-400 bg-emerald-500/15 border border-emerald-500/20 px-2 py-0.5 rounded-lg flex items-center gap-0.5">
-                          ✓ Done
+                          ✓ {t('done') || 'Done'}
                         </span>
                       ) : (
                         <span className="text-[10px] font-bold text-gray-400 hover:text-gray-600 border border-gray-200 dark:border-gray-700 px-2 py-0.5 rounded-lg">
-                          Mark
+                          {t('markAsCompleted') || 'Mark'}
                         </span>
                       )}
                     </div>
@@ -536,7 +559,6 @@ export const FoodRecommendation = () => {
               </div>
             )}
           </div>
-
 
         </div>
 

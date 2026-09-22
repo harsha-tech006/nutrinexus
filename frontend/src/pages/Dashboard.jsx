@@ -298,7 +298,7 @@ export const Dashboard = () => {
               ].map((dis) => (
                 <Link
                   key={dis.name}
-                  to={`/yoga_guide?disease=${encodeURIComponent(dis.name)}`}
+                  to={`/yoga-guide?disease=${encodeURIComponent(dis.name)}`}
                   className="text-[10px] font-bold bg-emerald-500/20 hover:bg-emerald-500/40 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 rounded-lg transition-all"
                 >
                   {dis.label} ➔
@@ -308,7 +308,7 @@ export const Dashboard = () => {
           </div>
 
           <Link
-            to="/yoga_guide"
+            to="/yoga-guide"
             className="flex items-center justify-between bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-xs px-4 py-3 rounded-xl transition-all shadow-md mt-2"
           >
             <span>Open All Disease Yogas & Procedure Videos</span>
@@ -318,21 +318,43 @@ export const Dashboard = () => {
 
         {/* Medical Disease Guide Quick Card */}
         <div className="bg-gradient-to-br from-indigo-950 via-gray-900 to-purple-950 text-white rounded-3xl p-6 shadow-soft border border-purple-500/20 flex flex-col justify-between space-y-4">
-          <div className="space-y-2">
+          <div className="space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-[10px] uppercase font-black tracking-widest text-purple-400 bg-purple-500/20 px-3 py-1 rounded-full border border-purple-500/30">
                 🩺 Medical Disease & Nutrition
               </span>
-              <span className="text-xs text-gray-400 font-bold">20+ Disease Guides</span>
+              <span className="text-xs text-purple-300 font-extrabold bg-purple-900/40 px-2.5 py-0.5 rounded-md">20+ Disease Guides</span>
             </div>
             <h3 className="text-lg font-black text-white">Foods to Eat, Foods to Avoid & Medicines</h3>
             <p className="text-xs text-gray-300 leading-relaxed">
               Scientific dietary recommendations, lifestyle protocols, and educational drug class directory for major health conditions.
             </p>
+
+            {/* Quick Disease Tags linking directly to disease diet & meds in Disease Guide */}
+            <div className="flex flex-wrap gap-1.5 pt-1">
+              {[
+                { name: 'Diabetes', label: 'Diabetes' },
+                { name: 'PCOS', label: 'PCOS / PCOD' },
+                { name: 'Hypertension', label: 'High BP' },
+                { name: 'Obesity', label: 'Weight Loss' },
+                { name: 'Thyroid', label: 'Thyroid' },
+                { name: 'Anemia', label: 'Anemia' },
+                { name: 'GERD', label: 'Acid Reflux' },
+                { name: 'Fatty Liver', label: 'Fatty Liver' }
+              ].map((dis) => (
+                <Link
+                  key={dis.name}
+                  to={`/disease-guide?disease=${encodeURIComponent(dis.name)}`}
+                  className="text-[10px] font-bold bg-purple-500/20 hover:bg-purple-500/40 text-purple-300 border border-purple-500/30 px-2.5 py-1 rounded-lg transition-all"
+                >
+                  {dis.label} ➔
+                </Link>
+              ))}
+            </div>
           </div>
 
           <Link
-            to="/disease_guide"
+            to="/disease-guide"
             className="flex items-center justify-between bg-purple-600 hover:bg-purple-700 text-white font-extrabold text-xs px-4 py-3 rounded-xl transition-all shadow-md mt-2"
           >
             <span>Open Disease & Nutrition Guide</span>
